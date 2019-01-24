@@ -1,0 +1,65 @@
+def create_doc(sem_name, program_name, teacher_name, dep_name, no_subs, sub_name ):
+
+    period_num
+    templatedoc = "formdraft.docx"
+    document = MailMerge(templatedoc)
+
+    document.merge(
+        dept_name =
+        sem_type =
+        teacher_name =
+        post =
+
+
+
+
+    )
+    subject_info = dict()
+    for i in range(0, no_subs):
+        if sub_name[i].find('[T]'):
+            class_type = 1
+            teacher_num = 1
+            period_num = 4
+            student_num = 24
+
+        elif sub_name[i].find('[L]'):
+            class_type = 1
+            teacher_num = 1
+            period_num = 6
+            student_num = 48
+        elif sub_name[i].find('[P]'):
+            class_type = 2
+            teacher_num = 3
+            period_num = 6
+            student_num = 24
+
+        elif sub_name[i].find('Project'):
+            class_type = 1
+            teacher_num = 1
+            period_num = 3
+            student_num = 4
+        else:
+            class_type = 3
+            teacher_num = 1
+            period_num = 3
+            student_num = 24
+
+        subject_info.update({
+            'sn': str(i+1),
+            'subject': str(sub_name[i]),
+            'class_type': str(class_type),
+            'teacher_num': str(teacher_num),
+            'period_num' : str(period_num),
+            'student_num' : str(student_num)
+        })
+
+
+def download_docx(request):
+    document = Document()
+    document.add_heading('Document Title', 0)
+
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+    response['Content-Disposition'] = 'attachment; filename=download.docx'
+    document.save(response)
+
+    return response

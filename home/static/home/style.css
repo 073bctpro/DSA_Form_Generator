@@ -1,0 +1,11 @@
+
+.rounde{
+
+	border-radius: 50%;
+
+}
+
+.fluid{
+	max-width: 100%;
+	height: auto;
+}
